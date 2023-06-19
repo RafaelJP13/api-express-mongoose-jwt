@@ -1,5 +1,6 @@
 import express from 'express'
 const router = express.Router()
+import {getContact} from '../controllers/contactController.js'
 
 router.get('/', (req, res) =>{
     
@@ -7,11 +8,7 @@ router.get('/', (req, res) =>{
 
 })
 
-router.get('/:id', (req, res) =>{
-    
-    res.status(200).json({message: `Get contact for ${req.params.id}`})
-
-})
+router.get('/:id', getContact)
 
 router.post('/', (req, res) =>{
     
