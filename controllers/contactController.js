@@ -11,8 +11,11 @@ const getContact = (req, res) =>{
 
 const createContact = (req, res) =>{
 
-    console.log(req.body)
-    
+    const {name, email, phone} = req.body
+    if(!name || !email || !phone){
+        res.status(400)
+        throw new Error('all Fields must be filled!')
+    }
     res.status(200).json({message: `Create contact`})
 
 }
