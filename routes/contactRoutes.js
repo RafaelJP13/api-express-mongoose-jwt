@@ -7,4 +7,28 @@ router.get('/', (req, res) =>{
 
 })
 
+router.get('/:id', (req, res) =>{
+    
+    res.status(200).json({message: `Get contact for ${req.params.id}`})
+
+})
+
+router.post('/', (req, res) =>{
+    
+    res.status(200).json({message: 'Create contacts'})
+
+})
+
+router.put('/:id', (req, res) =>{
+    
+    res.status(200).json({message: `Update contact for ${req.params.id}`})
+
+})
+
+router.delete('/:id', (req, res) =>{
+    
+    res.status(200).json({message: `Delete contact for ${req.params.id}`})
+
+})
+
 export default router
