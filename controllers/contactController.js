@@ -1,15 +1,17 @@
-const getContacts = (req, res) =>{
+import asyncHandler from 'express-async-handler'
+
+const getContacts = asyncHandler(async (req, res) =>{
     
     res.status(200).json({message: `Get contacts`})
 
-}
+})
 
-const getContact = (req, res) =>{
+const getContact = asyncHandler((req, res) =>{
     
     res.status(200).json({message: `Get contact for ${req.params.id}`})
-}
+})
 
-const createContact = (req, res) =>{
+const createContact = asyncHandler(async (req, res) =>{
 
     const {name, email, phone} = req.body
     if(!name || !email || !phone){
@@ -18,19 +20,19 @@ const createContact = (req, res) =>{
     }
     res.status(200).json({message: `Create contact`})
 
-}
+})
 
-const updateContact = (req, res) =>{
+const updateContact = asyncHandler(async (req, res) =>{
     
     res.status(200).json({message: `Update contact for ${req.params.id}`})
 
-}
+})
 
-const deleteContact = (req, res) =>{
+const deleteContact = asyncHandler(async (req, res) =>{
     
     res.status(200).json({message: `Delete contact for ${req.params.id}`})
 
-}
+})
 
 export {
 
