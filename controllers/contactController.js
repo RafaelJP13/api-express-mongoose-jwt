@@ -1,30 +1,65 @@
 import asyncHandler from 'express-async-handler'
+import Contact from '../models/contactModel.js'
 
 const getContacts = asyncHandler(async (req, res) =>{
-    
-    res.status(200).json({message: `Get contacts`})
+
+    const contacts = await Contact.find()
+    res.status(200).json(contacts)
 
 })
 
-const getContact = asyncHandler((req, res) =>{
-    
-    res.status(200).json({message: `Get contact for ${req.params.id}`})
+const getContact = asyncHandler(async (req, res, next) =>{
+
+    const {id} = req.params
+    const contact = await Contact.findById(id)
+
+    console.log(contact)
+
+    if(!contact){
+        res.status(404)
+        return next(new Error('Contact Not Found!'));
+    }
+
+    res.status(200).json(contact)
 })
 
 const createContact = asyncHandler(async (req, res) =>{
 
     const {name, email, phone} = req.body
+
     if(!name || !email || !phone){
         res.status(400)
-        throw new Error('all Fields must be filled!')
+        throw new Error('all fields must be filled!')
     }
-    res.status(200).json({message: `Create contact`})
 
-})
+    const contact = await Contact.create({
+        name,
+        email,
+        phone,
+    })
+
+    res.status(201).json(contact)
+
+})  
 
 const updateContact = asyncHandler(async (req, res) =>{
+
+    const {id} = req.params
+
+    const contact = await Contact.findById(req.params.id)
+
+    if(!contact){
+        res.status(404)
+        throw new Error('Contact Not Found!')
+    }
+
+    const updatedContact = await Contact.findByIdAndUpdate(
+        id,
+        req.body,
+        {new: true},
+    )
     
-    res.status(200).json({message: `Update contact for ${req.params.id}`})
+    res.status(200).json(updatedContact)
 
 })
 
