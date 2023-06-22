@@ -44,7 +44,7 @@ const updateContact = asyncHandler(async (req, res) =>{
 
     const {id} = req.params
 
-    const contact = await Contact.findById(req.params.id)
+    const contact = await Contact.findById(id)
 
     if(!contact){
         res.status(404)
