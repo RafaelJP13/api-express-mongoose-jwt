@@ -1,7 +1,7 @@
 import express from 'express'
+import {createContact, deleteContact, getContact, getContacts, updateContact} from '../controllers/contactController.js'
 
 const router = express.Router()
-import {createContact, deleteContact, getContact, getContacts, updateContact} from '../controllers/contactController.js'
 
 router.get('/', getContacts)
 router.get('/:id', getContact)
