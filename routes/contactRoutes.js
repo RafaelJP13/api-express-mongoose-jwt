@@ -1,4 +1,5 @@
 import express from 'express'
+
 const router = express.Router()
 import {createContact, deleteContact, getContact, getContacts, updateContact} from '../controllers/contactController.js'
 
