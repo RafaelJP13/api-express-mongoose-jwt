@@ -62,8 +62,18 @@ const updateContact = asyncHandler(async (req, res) =>{
 })
 
 const deleteContact = asyncHandler(async (req, res) =>{
+
+    const {id} = req.params
+    const contact = await Contact.findById(id)
     
-    res.status(200).json({message: `Delete contact for ${req.params.id}`})
+    if(!contact){
+        res.status(404)
+        throw new Error('Contact Not Found!')
+    }
+
+    await Contact.deleteOne({_id:id})
+    
+    res.status(200).json(contact)
 
 })
 
