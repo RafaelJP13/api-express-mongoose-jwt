@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const registerUser = asyncHandler(async (req, res) =>{
 
@@ -37,8 +38,32 @@ const registerUser = asyncHandler(async (req, res) =>{
 
 const loginUser = asyncHandler(async (req, res) =>{
 
-    res.json({message:'Login the user'})
+    const {email, password} = req.body
 
+    if(!email || !password){
+        res.status(400)
+        throw new Error('All fields must be filled!')
+    }
+
+    const user = await User.findOne({email})
+
+    if(user && (await bcrypt.compare(password, user.password))){
+
+        const {username, email, id} = user
+
+        const accessToken = jwt.sign({
+            user:{
+                username,
+                email,
+                id,
+            }
+        }, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1m'})
+        res.status(200).json({accessToken})
+
+    }else{
+        res.status(401)
+        throw new Error('Email or password is not valid!')
+    }
 })
 
 const currentUser = asyncHandler(async (req, res) =>{
