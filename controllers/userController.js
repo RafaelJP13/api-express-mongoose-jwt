@@ -12,21 +12,26 @@ const registerUser = asyncHandler(async (req, res) =>{
         throw new Error('All fields must be filled!')
     }
 
-    try{
-        const userAvailable = await User.findOne({email: email})
-    }
-    catch(err){
-        console.log(err)
-    }
+    const userAvailable = await User.findOne({email})
+
     if(userAvailable){
         res.status(400)
         throw new Error('User already in use!')
     }
 
     const hashPassword = await bcrypt.hash(password, 10)
-    console.log(`HashPassword: ${hashPassword}`)
+    const user = await User.create({
+        username,
+        email,
+        password:hashPassword,
+    })
 
-    res.json({message:'Register the user'})
+    if(user){
+        res.status(201).json({_id: user.id, email: user.email})
+    }else{
+        res.status(400)
+        throw new Error('User data not valid!')
+    }
 
 })
 
