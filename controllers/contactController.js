@@ -26,16 +26,18 @@ const getContact = asyncHandler(async (req, res) =>{
 const createContact = asyncHandler(async (req, res) =>{
 
     const {name, email, phone} = req.body
+    const {id} = req.user
 
     if(!name || !email || !phone){
         res.status(400)
         throw new Error('all fields must be filled!')
     }
-
+    
     const contact = await Contact.create({
         name,
         email,
         phone,
+        user_id: id,
     })
 
     res.status(201).json(contact)
