@@ -3,7 +3,9 @@ import Contact from '../models/contactModel.js'
 
 const getContacts = asyncHandler(async (req, res) =>{
 
-    const contacts = await Contact.find()
+    const {id} = req.user
+
+    const contacts = await Contact.find({user_id:id})
     res.status(200).json(contacts)
 
 })
