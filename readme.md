@@ -32,7 +32,7 @@
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `Bearer Token` | `string` | **Required** |
+| `Bearer Token` | `string (Auth)` | **Required** |
 
 #### Get all Contacts
 
@@ -42,8 +42,20 @@
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `Bearer Token` | `string` | **Required** |
+| `Bearer Token` | `string (Auth)` | **Required** |
 
+#### Edit Contact
+
+```http
+  PUT /api/contacts/:id
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Bearer Token` | `string (Auth)` | **Required** |
+| `name` | `string (Body)` | **Required** |
+| `email` | `string (Body)` | **Required** |
+| `phone` | `string (Body)` | **Required** |
 
 
 
