@@ -18,7 +18,7 @@ Contact API enables contact management, built using technologies such as Express
 ```bash
   cd api-express-mongoose-jwt
   npm install
-  node --watch server
+  npm start
 ```
     
 ## API Reference
