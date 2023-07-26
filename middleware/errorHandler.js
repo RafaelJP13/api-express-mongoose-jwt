@@ -1,8 +1,8 @@
 import {
   VALIDATION_ERROR, NOT_FOUND, UNAUTHORIZED, FORBIDDEN, SERVER_ERROR,
-} from '../constants.js';
+} from '../constants';
 
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
 
   switch (statusCode) {

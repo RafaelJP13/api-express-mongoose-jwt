@@ -1,9 +1,9 @@
 import express from 'express';
 import 'dotenv/config';
-import contactRoutes from './routes/contactRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-import errorHandler from './middleware/errorHandler.js';
-import connectDb from './config/dbConnection.js';
+import contactRoutes from './routes/contactRoutes';
+import userRoutes from './routes/userRoutes';
+import errorHandler from './middleware/errorHandler';
+import connectDb from './config/dbConnection';
 
 connectDb();
 const app = express();

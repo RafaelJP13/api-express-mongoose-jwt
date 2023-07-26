@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import Contact from '../models/contactModel.js';
+import Contact from '../models/contactModel';
 
 const getContacts = asyncHandler(async (req, res) => {
   const { id } = req.user;

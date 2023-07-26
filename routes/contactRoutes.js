@@ -1,8 +1,8 @@
 import express from 'express';
 import {
   createContact, deleteContact, getContact, getContacts, updateContact,
-} from '../controllers/contactController.js';
-import validateToken from '../middleware/validateTokenHandler.js';
+} from '../controllers/contactController';
+import validateToken from '../middleware/validateTokenHandler';
 
 const router = express.Router();
 
