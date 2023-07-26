@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node --watch --experimental-specifier-resolution=node server.js"
+    "start": "node --watch --experimental-specifier-resolution=node server.js",
+    "test": "jest"
+    
   },
   "author": "",
   "license": "ISC",
