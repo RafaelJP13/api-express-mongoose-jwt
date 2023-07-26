@@ -1,11 +1,11 @@
-import express from 'express'
-import { currentUser, loginUser, registerUser } from '../controllers/userController.js'
-import validateToken from '../middleware/validateTokenHandler.js'
+import express from 'express';
+import { currentUser, loginUser, registerUser } from '../controllers/userController.js';
+import validateToken from '../middleware/validateTokenHandler.js';
 
-const router = express.Router()
+const router = express.Router();
 
-router.post('/register', registerUser)
-router.post('/login', loginUser)
-router.get('/current', validateToken, currentUser)
+router.post('/register', registerUser);
+router.post('/login', loginUser);
+router.get('/current', validateToken, currentUser);
 
-export default router
+export default router;
